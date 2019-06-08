@@ -1,16 +1,16 @@
 pipeline {
    agent {
-      label Slave-node
+      label git linux
        {
-          Stages{
-               stage('Building the Image')
+          stages{
+                stage('Building the Image')
                 {
                   script {
                        sh 'cd $WORKSPACE'
-                       sh 'docker build -t centos-docker-build .'
+                       sh 'docker build -t centos6-docker-build .'
                    }
                 }
           }
        }
-}
+    }
 }
