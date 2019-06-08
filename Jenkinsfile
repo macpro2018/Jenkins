@@ -1,12 +1,16 @@
 pipeline {
-    node('Slave-node')
+   agent {
+      label Slave-node
        {
           Stages{
                stage('Building the Image')
                 {
-                   sh 'cd $WORKSPACE'
-                   sh 'docker build -t centos-docker-build .'
+                  script {
+                       sh 'cd $WORKSPACE'
+                       sh 'docker build -t centos-docker-build .'
+                   }
                 }
           }
        }
+}
 }
