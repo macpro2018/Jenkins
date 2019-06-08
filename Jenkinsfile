@@ -1,20 +1,12 @@
 pipeline {
-   agent any 
-   stages {
-         stage ('Build') {
-            steps {
-                 echo 
-                 }
-              }
-         stage ('Deploy'){
-            steps {
-                  echo "Deploy Phase"
-                 }
-              }
-         stage ('Test') {
-             steps {
-               echo "Test Phase"
-               }
-              }
-            }
-          }  
+    node('Slave-node')
+       {
+          Stages{
+               stage('Building the Image')
+                {
+                   sh 'cd $WORKSPACE'
+                   sh 'docker build -t centos-docker-build .'
+                }
+          }
+       }
+}
